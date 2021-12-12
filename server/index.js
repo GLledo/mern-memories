@@ -7,14 +7,15 @@ import postRoutes from './routes/card.routes.js'
 
 const app = express()
 
-app.use('/post', postRoutes)
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 
+app.use('/post', postRoutes)
+
 const CONNECTION_URL = 'mongodb+srv://mongomemories:mongomemories123@cluster0.fdbyu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-const PORT = process.env.PORT || 2000
+const PORT = process.env.PORT || 6000
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
